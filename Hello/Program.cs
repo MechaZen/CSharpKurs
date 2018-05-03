@@ -6,30 +6,61 @@ namespace Hello
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Podaj swoje imię: ");
-            string name = Console.ReadLine();
+            for (; ;)
+            {
+                Powitanie();
+                Wiek();
+                Koniecpętli();
+            }
+        }
 
-            Console.WriteLine("Witaj, " + name);
+        /// <summary>
+        /// Czyścimy ekran, i witamy kolejną osobę.
+        /// </summary>
+        private static void Koniecpętli()
+        {
+            Console.ReadKey();
+            Console.Clear();
+            Console.ResetColor();
+        }
 
-            Console.WriteLine("Podaj swój wiek: ");
-            int age = int.Parse(Console.ReadLine());
+        /// <summary>
+        /// Prosimy, o podanie wieku przez gościa.
+        /// </summary>
+        private static void Wiek()
+        {
+            Console.Write("Podaj swój wiek: ");
+
+            int age;
+            bool wynik = int.TryParse(Console.ReadLine(), out age);
 
             if (age > 18)
             {
-                Console.WriteLine("Jesteś pełnoletni");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Jesteś pełnoletni.");
+            }
+
+            else if (wynik == false)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Zły format danych. Wpisz prawidłowy.");
             }
             else
             {
-                Console.WriteLine("Jesteś niepełnoletni");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Jesteś niepełnoletni.");
             }
+        }
 
-            Console.ReadKey();
+        /// <summary>
+        /// Co tu dużo pisać, witamy się z gościem :-)
+        /// </summary>
+        private static void Powitanie()
+        {
+            Console.Write("Podaj swoje imię: ");
+            string name = Console.ReadLine();
 
-
-            //foreach (var item in args)
-            //{
-            //    Console.WriteLine("Witaj, " + item);
-            //}
+            Console.WriteLine("Witaj, " + name);
         }
     }
 }
